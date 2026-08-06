@@ -14,6 +14,7 @@ interface CartStore {
   getItemCount: () => number;
 }
 
+
 function itemKey(productId: string, size?: string) {
   return size ? `${productId}::${size}` : productId;
 }
