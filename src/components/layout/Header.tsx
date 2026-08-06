@@ -35,6 +35,7 @@ export default function Header() {
             </div>
           </div>
         </Link>
+//TODO: Add a search bar
 
         {/* Search */}
         <SearchBar />
