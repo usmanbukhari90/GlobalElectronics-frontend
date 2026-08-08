@@ -105,8 +105,27 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} {SHOP_INFO.name}. All rights reserved.
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
+          <p className="text-xs text-white/50">
+            © {new Date().getFullYear()} {SHOP_INFO.name}. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2">
+            {[
+              { name: "Apple Pay", src: "/payments/apple-pay.svg" },
+              { name: "Google Pay", src: "/payments/google-pay.svg" },
+              { name: "Mastercard", src: "/payments/mastercard.svg" },
+              { name: "Visa", src: "/payments/visa.svg" },
+              { name: "PayPal", src: "/payments/paypal.svg" },
+            ].map((method) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={method.name}
+                src={method.src}
+                alt={method.name}
+                className="h-8 w-auto"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </footer>
