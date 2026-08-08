@@ -6,6 +6,7 @@ import { Product } from "@/types";
 import { formatAED } from "@/lib/constants";
 import { useCartStore } from "@/lib/store";
 import { useToastStore } from "@/lib/toastStore";
+import SafeCheckoutBadge from "./SafeCheckoutBadge";
 import WishlistButton from "./WishlistButton";
 
 export default function ProductPurchase({ product }: { product: Product }) {
@@ -118,6 +119,8 @@ export default function ProductPurchase({ product }: { product: Product }) {
           <span className="text-red-500 font-medium">Out of Stock</span>
         )}
       </div>
+
+      <SafeCheckoutBadge />
     </div>
   );
 }
