@@ -22,9 +22,14 @@ const GRID_CLASSES: Record<ViewMode, string> = {
   detail: "flex flex-col",
 };
 
+// Bump this version string any time the underlying product data shape or
+// calculation changes server-side (e.g. review stats logic) — this
+// automatically invalidates all previously cached shop results.
+const CACHE_VERSION = "v2";
+
 function getCachedProducts(key: string): Product[] | null {
   try {
-    const raw = sessionStorage.getItem(`shop-products:${key}`);
+    const raw = sessionStorage.getItem(`shop-products:${CACHE_VERSION}:${key}`);
     return raw ? (JSON.parse(raw) as Product[]) : null;
   } catch {
     return null;
@@ -33,7 +38,7 @@ function getCachedProducts(key: string): Product[] | null {
 
 function setCachedProducts(key: string, data: Product[]) {
   try {
-    sessionStorage.setItem(`shop-products:${key}`, JSON.stringify(data));
+    sessionStorage.setItem(`shop-products:${CACHE_VERSION}:${key}`, JSON.stringify(data));
   } catch {
     // sessionStorage can fail in private browsing / quota exceeded — safe to ignore
   }
