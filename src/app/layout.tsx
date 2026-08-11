@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kanz Electronics | TVs, Laptops & More — Dubai, UAE",
+  title: "GLOBAL Electronics | TVs, Laptops & More — Dubai, UAE",
   description:
     "Premium electronics shop in Dubai. Smart TVs, laptops, accessories. TV repair professionals & used smart TVs.",
 };
