@@ -110,3 +110,18 @@ export interface BrandInfo {
   logo: string;
   count?: number;
 }
+
+export interface HeroBanner {
+  slot: 1 | 2;
+  heading: string;
+  subheading?: string;
+  buttonText: string;
+  linkHref: string;
+  imageUrl: string;
+}
+
+export interface AnnouncementMessage {
+  id: string;
+  text: string;
+  displayOrder: number;
+}
