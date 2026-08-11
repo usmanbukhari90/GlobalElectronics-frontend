@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { isLoggedIn, clearToken } from "@/lib/adminAuth";
-import { LayoutDashboard, Package, ShoppingBag, LogOut, Flame, LayoutGrid, MessageSquare } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, LogOut, Flame, LayoutGrid, MessageSquare, Image as ImageIcon, Megaphone } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [checked, setChecked] = useState(false);
@@ -35,6 +35,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { href: "/admin/hot-deals", label: "Hot Deals", icon: Flame },
     { href: "/admin/homepage-sections", label: "Homepage Sections", icon: LayoutGrid },
     { href: "/admin/reviews", label: "Reviews", icon: MessageSquare },
+    { href: "/admin/hero-banners", label: "Homepage Banners", icon: ImageIcon },
+    { href: "/admin/announcements", label: "Announcement Bar", icon: Megaphone },
   ];
 
   return (
