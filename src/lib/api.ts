@@ -1,4 +1,4 @@
-import { Product, Review, Order, CategoryInfo, BrandInfo } from "@/types";
+import { Product, Review, Order, CategoryInfo, BrandInfo, HeroBanner, AnnouncementMessage } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 
@@ -84,4 +84,12 @@ export async function getPopularPicks(): Promise<{ items: Product[]; banner: Pro
 
 export async function getBigSavings(): Promise<Product[]> {
   return fetchApi("/api/products/big-savings");
+}
+
+export async function getHeroBanners(): Promise<HeroBanner[]> {
+  return fetchApi("/api/hero-banners");
+}
+
+export async function getAnnouncements(): Promise<AnnouncementMessage[]> {
+  return fetchApi("/api/announcements");
 }
