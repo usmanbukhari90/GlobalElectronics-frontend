@@ -15,23 +15,25 @@ import {
   getDailyHighlights,
   getPopularPicks,
   getBigSavings,
+  getHeroBanners,
 } from "@/lib/api";
 
 export default async function HomePage() {
-  const [products, categories, brands, highlights, popularPicks, bigSavings] = await Promise.all([
+  const [products, categories, brands, highlights, popularPicks, bigSavings, heroBanners] = await Promise.all([
     getProducts(),
     getCategories(),
     getBrands(),
     getDailyHighlights(),
     getPopularPicks(),
     getBigSavings(),
+    getHeroBanners(),
   ]);
 
   const featured = products.slice(0, 8);
 
   return (
     <>
-      <HomeHeroSection initialHighlights={highlights} />
+      <HomeHeroSection initialHighlights={highlights} banners={heroBanners} />
 
       <PopularPicksSection items={popularPicks.items} banner={popularPicks.banner} />
       <BrandSection brands={brands} />
