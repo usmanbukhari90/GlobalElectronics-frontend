@@ -2,25 +2,32 @@
 
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { PROMO_MESSAGES } from "@/lib/constants";
+import { AnnouncementMessage } from "@/types";
+import { getAnnouncements } from "@/lib/api";
 
 export default function TopAnnouncementBar() {
   const [visible, setVisible] = useState(true);
   const [index, setIndex] = useState(0);
+  const [messages, setMessages] = useState<AnnouncementMessage[]>([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % PROMO_MESSAGES.length);
-    }, 4000);
-    return () => clearInterval(timer);
+    getAnnouncements().then(setMessages).catch(() => setMessages([]));
   }, []);
 
-  if (!visible) return null;
+  useEffect(() => {
+    if (messages.length === 0) return;
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % messages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [messages.length]);
+
+  if (!visible || messages.length === 0) return null;
 
   return (
     <div className="bg-red-600 text-white text-sm relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-10 py-2 text-center font-medium">
-        {PROMO_MESSAGES[index]}
+        {messages[index].text}
       </div>
       <button
         onClick={() => setVisible(false)}
