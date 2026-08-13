@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Search, User, Heart, ShoppingCart, Tv, Bell, LayoutDashboard } from "lucide-react";
+import { User, Heart, ShoppingCart, Tv, LayoutDashboard } from "lucide-react";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 import { formatAED, SHOP_INFO } from "@/lib/constants";
 import { isLoggedIn } from "@/lib/adminAuth";
+import { useCustomerAuth } from "@/lib/useCustomerAuth";
 import AdminNotificationBell from "@/components/admin/AdminNotificationBell";
 import SearchBar from "@/components/layout/SearchBar";
 
 export default function Header() {
   const [mounted, setMounted] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const { user } = useCustomerAuth();
   const cartTotal = useCartStore((s) => s.getTotal());
   const cartCount = useCartStore((s) => s.getItemCount());
   const wishlistCount = useWishlistStore((s) => s.getCount());
@@ -20,6 +22,10 @@ export default function Header() {
     setMounted(true);
     setIsAdmin(isLoggedIn());
   }, []);
+
+  const displayName =
+    user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0];
+
   return (
     <header className="bg-navy text-white">
     <div className="mx-auto flex max-w-[1400px] items-center gap-6 px-4 py-4 lg:px-6">
@@ -42,11 +48,11 @@ export default function Header() {
        {/* Actions */}
        <div className="flex shrink-0 items-center gap-4 lg:gap-6">
           <Link
-            href="/login"
+            href={mounted && user ? "/account" : "/login"}
             className="hidden items-center gap-1.5 text-sm hover:text-accent-yellow transition-colors md:flex"
           >
             <User className="h-5 w-5" />
-            <span>Login</span>
+            <span>{mounted && user ? `Hi, ${displayName}` : "Login"}</span>
           </Link>
 
           <Link
