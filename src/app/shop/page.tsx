@@ -52,6 +52,8 @@ function ShopContent() {
   const category = searchParams.get("category");
   const brand = searchParams.get("brand");
   const query = searchParams.get("q");
+  const minDiscount = searchParams.get("minDiscount");
+  const maxDiscount = searchParams.get("maxDiscount");
 
   const cacheKey = searchParams.toString();
 
@@ -113,10 +115,19 @@ function ShopContent() {
 // Scroll position is now handled natively by Next.js's Router Cache
   // (see experimental.staleTimes in next.config.ts) — no manual code needed.
 
+  function discountOf(p: Product): number {
+    if (!p.originalPrice || p.originalPrice <= p.price) return 0;
+    return Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100);
+  }
+
   const filteredSorted = useMemo(() => {
     let result = products.filter((p) => {
       const price = p.sizes?.[0]?.price ?? p.price;
-      return price >= priceRange[0] && price <= priceRange[1];
+      if (price < priceRange[0] || price > priceRange[1]) return false;
+      const discount = discountOf(p);
+      if (minDiscount && discount < Number(minDiscount)) return false;
+      if (maxDiscount && discount >= Number(maxDiscount)) return false;
+      return true;
     });
 
     switch (sort) {
@@ -150,13 +161,17 @@ function ShopContent() {
     setSort("popularity");
   }
 
-  const title = brand
-    ? `${brand} Products`
-    : category
-      ? category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-      : query
-        ? `Results for "${query}"`
-        : "All Products";
+  const title = minDiscount
+    ? "Super Sale"
+    : maxDiscount
+      ? "Flash Deals"
+      : brand
+        ? `${brand} Products`
+        : category
+          ? category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+          : query
+            ? `Results for "${query}"`
+            : "All Products";
 
   const currentCategoryInfo = categories.find((c) => c.id === category);
   const hasActiveFilters = !!category || !!brand || !!query;
