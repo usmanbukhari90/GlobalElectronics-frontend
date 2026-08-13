@@ -107,10 +107,10 @@ export default function Navigation() {
         </div>
 
         <div className="ml-auto flex items-center gap-4">
-          <Link href="/shop?category=discounted" className="py-4 text-sm font-bold text-red-500 whitespace-nowrap hover:text-red-600">
+          <Link href="/shop?minDiscount=25" className="py-4 text-sm font-bold text-red-500 whitespace-nowrap hover:text-red-600">
             SUPER SALE!
           </Link>
-          <Link href="/shop" className="hidden sm:block py-4 text-sm font-semibold text-orange-500 whitespace-nowrap hover:text-orange-600">
+          <Link href="/shop?maxDiscount=30" className="hidden sm:block py-4 text-sm font-semibold text-orange-500 whitespace-nowrap hover:text-orange-600">
             FLASH DEALS
           </Link>
         </div>
