@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Product } from "@/types";
+import { Product, HeroBanner } from "@/types";
 import HeroBanners from "./HeroBanners";
 import DailyHighlight from "./DailyHighlight";
 
-export default function HomeHeroSection({ initialHighlights }: { initialHighlights: Product[] }) {
+export default function HomeHeroSection({
+  initialHighlights,
+  banners,
+}: {
+  initialHighlights: Product[];
+  banners: HeroBanner[];
+}) {
   const [highlights, setHighlights] = useState(initialHighlights);
 
   useEffect(() => {
@@ -19,14 +25,14 @@ export default function HomeHeroSection({ initialHighlights }: { initialHighligh
       {hasHighlights ? (
         <div className="grid gap-4 lg:grid-cols-5 items-stretch">
           <div className="lg:col-span-4 h-full">
-            <HeroBanners />
+            <HeroBanners banners={banners} />
           </div>
           <div className="hidden lg:block h-full">
             <DailyHighlight products={highlights} onAllExpired={() => setHighlights([])} />
           </div>
         </div>
       ) : (
-        <HeroBanners fullWidth />
+        <HeroBanners banners={banners} fullWidth />
       )}
     </div>
   );
