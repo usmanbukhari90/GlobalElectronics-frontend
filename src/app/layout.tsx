@@ -7,7 +7,7 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import Toast from "@/components/layout/Toast";
 import SearchOverlay from "@/components/layout/SearchOverlay";
-
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -24,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white">
+      <body className="min-h-full flex flex-col bg-white pb-16 lg:pb-0">
       <TopAnnouncementBar />
         <div className="relative">
           <Header />
@@ -34,6 +34,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <Toast />
+        <MobileBottomNav />
       </body>
     </html>
   );
