@@ -69,10 +69,10 @@ export default function DailyHighlight({
 
   return (
     <div className="relative h-full overflow-hidden rounded-lg bg-gradient-to-br from-navy to-navy-light text-white shadow-lg flex flex-col">
-      <div className="flex items-center justify-between px-4 pt-4">
+      <div className="flex items-center justify-between px-3 pt-3 lg:px-4 lg:pt-4">
         <div className="flex items-center gap-1.5">
-          <Flame className="h-4 w-4 text-accent-yellow" />
-          <h3 className="font-bold text-sm tracking-wide">HOT DEAL</h3>
+          <Flame className="h-3.5 w-3.5 text-accent-yellow lg:h-4 lg:w-4" />
+          <h3 className="font-bold text-xs tracking-wide lg:text-sm">HOT DEAL</h3>
         </div>
         {live.length > 1 && (
           <div className="flex gap-1">
@@ -88,25 +88,25 @@ export default function DailyHighlight({
         )}
       </div>
 
-      <p className="px-4 mt-1 text-xs text-white/70">Limited stock — grab it before time runs out!</p>
+      <p className="hidden px-4 mt-1 text-xs text-white/70 lg:block">Limited stock — grab it before time runs out!</p>
 
-      <div className="px-4 mt-3">
-        <div className="grid grid-cols-3 gap-1.5 rounded-md bg-black/20 p-2 text-center">
+      <div className="px-3 mt-2 lg:px-4 lg:mt-3">
+        <div className="grid grid-cols-3 gap-1 rounded-md bg-black/20 p-1.5 text-center lg:gap-1.5 lg:p-2">
           {[
             { label: "H", value: countdown.h },
             { label: "M", value: countdown.m },
             { label: "S", value: countdown.s },
           ].map((t) => (
             <div key={t.label}>
-              <div className="text-lg font-bold tabular-nums leading-none">{String(t.value).padStart(2, "0")}</div>
-              <div className="text-[9px] text-white/60 mt-0.5">{t.label}</div>
+              <div className="text-xs font-bold tabular-nums leading-none lg:text-lg">{String(t.value).padStart(2, "0")}</div>
+              <div className="text-[8px] text-white/60 mt-0.5 lg:text-[9px]">{t.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <Link href={`/product/${current.slug}`} className="block px-4 mt-3 group">
-        <div className="relative aspect-video overflow-hidden rounded-md bg-white/5">
+      <Link href={`/product/${current.slug}`} className="block px-3 mt-2 group lg:px-4 lg:mt-3">
+        <div className="relative aspect-[2/1] overflow-hidden rounded-md bg-white/5 lg:aspect-video">
           <Image
             src={current.image}
             alt={current.name}
@@ -115,25 +115,25 @@ export default function DailyHighlight({
             sizes="300px"
           />
           {current.discountPercent && (
-            <span className="absolute top-2 left-2 rounded bg-pink-500 px-2 py-0.5 text-[10px] font-bold">
+            <span className="absolute top-1.5 left-1.5 rounded bg-pink-500 px-1.5 py-0.5 text-[9px] font-bold lg:top-2 lg:left-2 lg:px-2 lg:text-[10px]">
               {current.discountPercent}% OFF
             </span>
           )}
         </div>
       </Link>
 
-      <div className="px-4 mt-3 flex-1">
+      <div className="px-3 mt-2 flex-1 lg:px-4 lg:mt-3">
         <Link href={`/product/${current.slug}`}>
-          <p className="text-sm font-medium line-clamp-2 hover:text-accent-yellow transition-colors">{current.name}</p>
+          <p className="text-xs font-medium line-clamp-1 hover:text-accent-yellow transition-colors lg:text-sm lg:line-clamp-2">{current.name}</p>
         </Link>
-        <div className="flex items-baseline gap-2 mt-1">
-          <p className="text-xl font-bold text-accent-yellow">{formatAED(price)}</p>
+        <div className="flex items-baseline gap-1.5 mt-1 lg:gap-2">
+          <p className="text-sm font-bold text-accent-yellow lg:text-xl">{formatAED(price)}</p>
           {current.originalPrice && (
-            <p className="text-xs text-white/50 line-through">{formatAED(current.originalPrice)}</p>
+            <p className="text-[10px] text-white/50 line-through lg:text-xs">{formatAED(current.originalPrice)}</p>
           )}
         </div>
         {current.sizes && current.sizes.length > 1 && (
-          <p className="text-xs text-white/60 mt-0.5">
+          <p className="hidden text-xs text-white/60 mt-0.5 lg:block">
             From {current.sizes[0].label} — {current.sizes[current.sizes.length - 1].label}
           </p>
         )}
@@ -141,7 +141,7 @@ export default function DailyHighlight({
 
       <Link
         href={`/product/${current.slug}`}
-        className="block mx-4 mb-4 mt-3 rounded-full bg-accent-yellow py-2.5 text-center text-xs font-bold text-navy hover:bg-white transition-colors"
+        className="block mx-3 mb-3 mt-2 rounded-full bg-accent-yellow py-1.5 text-center text-[11px] font-bold text-navy hover:bg-white transition-colors lg:mx-4 lg:mb-4 lg:mt-3 lg:py-2.5 lg:text-xs"
       >
         Shop Now
       </Link>
