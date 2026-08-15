@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Route } from "next";
 import { HeroBanner } from "@/types";
 
 export default function HeroBanners({
@@ -29,7 +30,7 @@ export default function HeroBanners({
               {banner1.heading}
             </h2>
             <Link
-              href={banner1.linkHref}
+              href={banner1.linkHref as Route}
               className="mt-6 inline-block w-fit rounded-full bg-white px-8 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:bg-navy hover:text-white"
             >
               {banner1.buttonText}
@@ -56,7 +57,7 @@ export default function HeroBanners({
               {banner2.heading}
             </h2>
             <Link
-              href={banner2.linkHref}
+              href={banner2.linkHref as Route}
               className="mt-6 inline-block w-fit rounded-full bg-white px-8 py-2.5 text-sm font-semibold text-navy transition-all duration-200 hover:bg-navy hover:text-white"
             >
               {banner2.buttonText}
