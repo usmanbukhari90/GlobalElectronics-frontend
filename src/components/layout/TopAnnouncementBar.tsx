@@ -25,8 +25,8 @@ export default function TopAnnouncementBar() {
   if (!visible || messages.length === 0) return null;
 
   return (
-    <div className="bg-red-600 text-white text-sm relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-10 py-2 text-center font-medium">
+    <div className="bg-red-600 text-white relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-8 py-1.5 text-center font-medium text-[11px] leading-tight whitespace-nowrap overflow-hidden text-ellipsis sm:px-10 sm:py-2 sm:text-sm">
         {messages[index].text}
       </div>
       <button
