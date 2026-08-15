@@ -46,7 +46,7 @@ export default function PopularPicksSection({ items, banner }: { items: Product[
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:items-stretch">
+      <div className="flex flex-col gap-4 md:grid md:grid-cols-4 md:items-stretch">
         <div className="flex flex-col gap-4 md:col-span-1">
           {left1 && <PickCard product={left1} />}
           {left2 && <PickCard product={left2} />}
@@ -55,7 +55,7 @@ export default function PopularPicksSection({ items, banner }: { items: Product[
         {banner && (
           <Link
             href={`/product/${banner.slug}`}
-            className="relative col-span-2 md:col-span-2 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg group"
+            className="relative w-full aspect-[4/3] md:col-span-2 md:aspect-auto md:h-auto overflow-hidden rounded-lg group"
           >
             <Image
               src={banner.image}
