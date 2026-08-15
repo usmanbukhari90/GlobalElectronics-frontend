@@ -4,7 +4,7 @@ export function formatAED(amount: number): string {
 
 export const SHOP_INFO = {
   name: "GLOBAL ELECTRONICS",
-  tagline: "TV REPAIR PROFESSIONALS & USED SMART TV'S",
+  tagline: "Tech for Every World",
   phone: "+971 4 280 900 3434",
   whatsapp: "+97152809003434",
   email: "info@kanzelectronics.ae",
