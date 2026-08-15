@@ -23,12 +23,12 @@ export default function HomeHeroSection({
   return (
     <div className="mx-auto max-w-[1400px] px-4 pt-6 lg:px-6">
       {hasHighlights ? (
-        <div className="grid gap-4 lg:grid-cols-5 items-stretch">
-          <div className="lg:col-span-4 h-full">
-            <HeroBanners banners={banners} />
-          </div>
-          <div className="hidden lg:block h-full">
+        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-5 lg:items-stretch">
+          <div className="order-1 lg:order-2 lg:col-span-1 h-full">
             <DailyHighlight products={highlights} onAllExpired={() => setHighlights([])} />
+          </div>
+          <div className="order-2 lg:order-1 lg:col-span-4 h-full">
+            <HeroBanners banners={banners} />
           </div>
         </div>
       ) : (
