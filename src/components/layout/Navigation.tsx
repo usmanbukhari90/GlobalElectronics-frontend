@@ -1,10 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const navItems = [
+type NavItem = {
+  label: string;
+  href: Route;
+  dropdown?: { label: string; href: Route }[];
+};
+
+const navItems: NavItem[] = [
   { label: "Shop", href: "/shop" },
   {
     label: "TV & AV",
@@ -106,11 +113,11 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div className="ml-auto flex items-center gap-4">
-          <Link href="/shop?minDiscount=25" className="py-4 text-sm font-bold text-red-500 whitespace-nowrap hover:text-red-600">
-            SUPER SALE!
+        <div className="ml-auto flex items-center gap-2.5 sm:gap-4">
+          <Link href="/shop?minDiscount=25" className="py-4 text-[11px] sm:text-sm font-bold text-red-500 whitespace-nowrap hover:text-red-600">
+            SUPER SALE
           </Link>
-          <Link href="/shop?maxDiscount=30" className="hidden sm:block py-4 text-sm font-semibold text-orange-500 whitespace-nowrap hover:text-orange-600">
+          <Link href="/shop?maxDiscount=30" className="py-4 text-[11px] sm:text-sm font-semibold text-orange-500 whitespace-nowrap hover:text-orange-600">
             FLASH DEALS
           </Link>
         </div>
