@@ -26,27 +26,30 @@ export default function Header() {
   const displayName =
     user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0];
 
-  return (
-    <header className="bg-navy text-white">
-    <div className="mx-auto flex max-w-[1400px] items-center gap-6 px-4 py-4 lg:px-6">
-        {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/10">
-            <Tv className="h-7 w-7 text-white" />
-          </div>
-          <div className="hidden sm:block">
-            <div className="text-lg font-bold tracking-wide">{SHOP_INFO.name}</div>
-            <div className="text-[10px] tracking-wider text-white/70 uppercase">
-              {SHOP_INFO.tagline}
+    return (
+      <header className="bg-navy text-white">
+      <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 pt-3 pb-2 lg:gap-6 lg:px-6 lg:py-4">
+          {/* Logo */}
+          <Link href="/" className="flex shrink-0 items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 lg:h-12 lg:w-12">
+              <Tv className="h-6 w-6 text-white lg:h-7 lg:w-7" />
             </div>
+            <div className="block">
+              <div className="text-sm font-bold tracking-wide lg:text-lg">{SHOP_INFO.name}</div>
+              <div className="text-[9px] tracking-wider text-white/70 uppercase lg:text-[10px]">
+                {SHOP_INFO.tagline}
+              </div>
+            </div>
+          </Link>
+  
+          {/* Search — desktop/tablet only, sits inline here. On mobile it moves
+              to its own row below the header (rendered further down). */}
+          <div className="hidden lg:block lg:flex-1">
+            <SearchBar />
           </div>
-        </Link>
-
-        {/* Search */}
-        <SearchBar />
-
-       {/* Actions */}
-       <div className="flex shrink-0 items-center gap-4 lg:gap-6">
+  
+         {/* Actions */}
+         <div className="ml-auto flex shrink-0 items-center gap-4 lg:ml-0 lg:gap-6">
           <Link
             href={mounted && user ? "/account" : "/login"}
             className="hidden items-center gap-1.5 text-sm hover:text-accent-yellow transition-colors md:flex"
@@ -100,6 +103,13 @@ export default function Header() {
   </Link>
 )}
 </div>
+      </div>
+
+      {/* Search — mobile/tablet only, own row below the header, above Navigation */}
+      <div className="px-4 pb-3 pt-0 lg:hidden">
+        <div className="mx-auto max-w-[1400px] text-sm">
+          <SearchBar />
+        </div>
       </div>
     </header>
   );
