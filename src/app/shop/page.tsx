@@ -25,12 +25,28 @@ const GRID_CLASSES: Record<ViewMode, string> = {
 // Bump this version string any time the underlying product data shape or
 // calculation changes server-side (e.g. review stats logic) — this
 // automatically invalidates all previously cached shop results.
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
+
+// The /api/products endpoint has, at times, returned the array wrapped in
+// an object (e.g. { products: [...] } or { items: [...] }) instead of a
+// bare array. Normalizing here means every caller can safely assume an
+// array, and a bad/legacy shape never reaches .filter()/.map().
+function normalizeProducts(data: unknown): Product[] {
+  if (Array.isArray(data)) return data;
+  if (data && typeof data === "object") {
+    const obj = data as Record<string, unknown>;
+    if (Array.isArray(obj.products)) return obj.products as Product[];
+    if (Array.isArray(obj.items)) return obj.items as Product[];
+    if (Array.isArray(obj.data)) return obj.data as Product[];
+  }
+  return [];
+}
 
 function getCachedProducts(key: string): Product[] | null {
   try {
     const raw = sessionStorage.getItem(`shop-products:${CACHE_VERSION}:${key}`);
-    return raw ? (JSON.parse(raw) as Product[]) : null;
+    if (!raw) return null;
+    return normalizeProducts(JSON.parse(raw));
   } catch {
     return null;
   }
@@ -75,16 +91,17 @@ function ShopContent() {
   }, []);
 
  // Fetch only if we don't already have cached results for this exact query.
+ // An empty cached array is treated as "no usable cache" — it almost
+ // always means a past request failed or returned nothing, and blindly
+ // trusting it would silently show an empty page forever with no error.
  useEffect(() => {
   const cached = getCachedProducts(cacheKey);
-  if (cached) {
+  if (cached && cached.length > 0) {
     setProducts(cached);
     setLoading(false);
-    if (cached.length > 0) {
-      const prices = cached.map((p) => p.sizes?.[0]?.price ?? p.price);
-      setPriceBounds([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
-      setPriceRange([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
-    }
+    const prices = cached.map((p) => p.sizes?.[0]?.price ?? p.price);
+    setPriceBounds([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
+    setPriceRange([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
     return;
   }
 
@@ -96,8 +113,9 @@ function ShopContent() {
   setLoading(true);
   fetch(`${API_URL}/api/products?${params}`)
     .then((r) => r.json())
-    .then((data: Product[]) => {
-      setCachedProducts(cacheKey, data);
+    .then((raw: unknown) => {
+      const data = normalizeProducts(raw);
+      if (data.length > 0) setCachedProducts(cacheKey, data);
       setProducts(data);
       if (data.length > 0) {
         const prices = data.map((p) => p.sizes?.[0]?.price ?? p.price);
