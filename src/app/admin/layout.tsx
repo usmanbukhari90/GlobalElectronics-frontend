@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import type { Route } from "next";
 import { isLoggedIn, clearToken } from "@/lib/adminAuth";
 import { LayoutDashboard, Package, ShoppingBag, LogOut, Flame, LayoutGrid, MessageSquare, Image as ImageIcon, Megaphone } from "lucide-react";
 
@@ -50,7 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {navItems.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
-              href={href}
+              href={href as Route}
               className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors ${
                 pathname === href ? "bg-white/10 font-semibold" : "hover:bg-white/5"
               }`}
