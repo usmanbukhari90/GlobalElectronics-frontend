@@ -4,6 +4,13 @@ import { getOrder } from "@/lib/api";
 import { formatAED } from "@/lib/constants";
 import { CheckCircle } from "lucide-react";
 
+const STATUS_TEXT_COLORS: Record<string, string> = {
+  pending: "text-yellow-600",
+  confirmed: "text-blue-600",
+  shipped: "text-purple-600",
+  delivered: "text-green-600",
+};
+
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -32,7 +39,7 @@ export default async function OrderConfirmationPage({ params }: Props) {
         </div>
         <div className="flex justify-between text-sm mt-2">
           <span className="text-muted">Status</span>
-          <span className="capitalize font-medium text-green-600">{order.status}</span>
+          <span className={`capitalize font-medium ${STATUS_TEXT_COLORS[order.status]}`}>{order.status}</span>
         </div>
         <div className="flex justify-between text-sm mt-2">
           <span className="text-muted">Total</span>
