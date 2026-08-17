@@ -7,7 +7,7 @@ export const SHOP_INFO = {
   tagline: "Tech for Every World",
   phone: "+971 4 280 900 3434",
   whatsapp: "+97152809003434",
-  email: "info@kanzelectronics.ae",
+  email: "info@globalelectronics.ae",
   address: "Al Quoz Industrial Area, Dubai, UAE",
   freeShippingMin: 1250,
   emirates: [

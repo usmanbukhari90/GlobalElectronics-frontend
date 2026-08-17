@@ -44,7 +44,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen bg-gray-50">
       <aside className="w-56 shrink-0 bg-navy text-white flex flex-col">
         <div className="p-5 border-b border-white/10">
-          <div className="font-bold text-sm">KANZ ELECTRONICS</div>
+          <div className="font-bold text-sm">Global ELECTRONICS</div>
           <div className="text-[10px] text-white/60 uppercase tracking-wider">Admin Panel</div>
         </div>
         <nav className="flex-1 p-3 space-y-1">

@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm rounded-lg border border-border bg-white p-8 shadow-sm">
         <h1 className="text-xl font-bold text-navy mb-1">Admin Login</h1>
-        <p className="text-sm text-muted mb-6">Kanz Electronics management panel</p>
+        <p className="text-sm text-muted mb-6">Global Electronics management panel</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
