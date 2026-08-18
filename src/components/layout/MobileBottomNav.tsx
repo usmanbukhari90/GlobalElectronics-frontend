@@ -48,7 +48,7 @@ export default function MobileBottomNav() {
           >
             <div className="relative">
               <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 2.25} />
-              {mounted && count > 0 && (
+              {mounted && (label === "Wishlist" || label === "Cart") && (
                 <span className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
                   {count}
                 </span>
