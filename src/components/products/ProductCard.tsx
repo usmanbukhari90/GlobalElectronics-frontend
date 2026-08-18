@@ -65,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             });
             showToast(`${product.name} added to cart`);
           }}
-          className="absolute inset-x-3 bottom-3 z-10 flex translate-y-4 items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-xs font-semibold text-navy opacity-0 shadow-md transition-all duration-200 hover:bg-navy hover:text-white group-hover:translate-y-0 group-hover:opacity-100"
+         className="absolute inset-x-3 bottom-3 z-10 flex items-center justify-center gap-1.5 rounded-full bg-white py-2.5 text-xs font-semibold text-navy shadow-md transition-all duration-200 hover:bg-navy hover:text-white lg:translate-y-4 lg:opacity-0 lg:pointer-events-none lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto"
         >
           <ShoppingCart className="h-3.5 w-3.5" />
           Add to Cart
