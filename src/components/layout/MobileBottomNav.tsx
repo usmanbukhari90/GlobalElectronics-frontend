@@ -3,7 +3,9 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Home, User, ShoppingBag, Heart, ShoppingCart } from "lucide-react";
+import { useCartStore, useWishlistStore } from "@/lib/store";
 
 const NAV_ITEMS: { label: string; href: Route; icon: typeof Home }[] = [
   { label: "Home", href: "/", icon: Home },
@@ -15,6 +17,18 @@ const NAV_ITEMS: { label: string; href: Route; icon: typeof Home }[] = [
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  const cartCount = useCartStore((s) => s.getItemCount());
+  const wishlistCount = useWishlistStore((s) => s.getCount());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const badgeCounts: Record<string, number> = {
+    "/wishlist": wishlistCount,
+    "/cart": cartCount,
+  };
 
   return (
     <nav
@@ -23,15 +37,23 @@ export default function MobileBottomNav() {
     >
       {NAV_ITEMS.map(({ label, href, icon: Icon }) => {
         const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+        const count = badgeCounts[href] ?? 0;
         return (
           <Link
             key={href}
             href={href}
-            className={`flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-[11px] font-semibold transition-colors ${
+            className={`relative flex flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-[11px] font-semibold transition-colors ${
               active ? "text-navy" : "text-black hover:text-navy"
             }`}
           >
-            <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 2.25} />
+            <div className="relative">
+              <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 2.25} />
+              {mounted && count > 0 && (
+                <span className="absolute -top-1.5 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                  {count}
+                </span>
+              )}
+            </div>
             {label}
           </Link>
         );
