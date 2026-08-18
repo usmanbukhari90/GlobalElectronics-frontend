@@ -18,7 +18,7 @@ const VIEW_OPTIONS: { mode: ViewMode; icon: typeof Grid2x2; label: string }[] = 
 
 const GRID_CLASSES: Record<ViewMode, string> = {
   "4": "grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5",
-  "6": "grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6 md:gap-4",
+  "6": "grid grid-cols-3 gap-2 sm:gap-3 md:grid-cols-6 md:gap-4",
   detail: "flex flex-col",
 };
 
