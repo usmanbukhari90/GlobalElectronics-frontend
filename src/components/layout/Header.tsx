@@ -28,16 +28,18 @@ export default function Header() {
 
     return (
       <header className="bg-navy text-white">
-      <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 pt-3 pb-2 lg:gap-6 lg:px-6 lg:py-4">
-          {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center">
+            <div className="relative mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-4 lg:h-20 lg:gap-6 lg:px-6">
+          {/* Logo — fixed-height row above keeps the header's own height locked;
+              the logo image itself can be taller and will visually overflow
+              the row without stretching it. */}
+          <Link href="/" className="relative z-10 flex shrink-0 items-center">
             <Image
               src="/images/logo.png"
               alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
               width={400}
               height={218}
               priority
-              className="h-9 w-auto lg:h-12"
+              className="h-24 w-auto lg:h-32"
             />
           </Link>
   

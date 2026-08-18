@@ -7,14 +7,16 @@ export default function Footer() {
     <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
     <div>
-            <Image
-              src="/images/logo.png"
-              alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
-              width={400}
-              height={218}
-              className="h-10 w-auto mb-3"
-            />
-            <p className="text-sm text-white/70 leading-relaxed">
+    <div className="relative z-10 h-16 w-full">
+              <Image
+                src="/images/logo.png"
+                alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
+                width={400}
+                height={218}
+                className="absolute -left-6 -top-14 h-44 w-auto"
+              />
+            </div>
+            <p className="mt-4 text-sm text-white/70 leading-relaxed">
               {SHOP_INFO.tagline}. Your trusted electronics partner in Dubai,
               UAE.
             </p>
@@ -112,9 +114,17 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
-          <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} {SHOP_INFO.name}. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:items-start">
+            <p className="text-xs text-white/50">
+              © {new Date().getFullYear()} {SHOP_INFO.name}. All rights reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-white/50 sm:justify-start">
+              <Link href="/privacy-policy" target="_blank" className="hover:text-accent-yellow">Privacy Policy</Link>
+              <Link href="/terms-conditions" target="_blank" className="hover:text-accent-yellow">Terms & Conditions</Link>
+              <Link href="/cookies-policy" target="_blank" className="hover:text-accent-yellow">Cookies Policy</Link>
+              <Link href="/developer" target="_blank" className="hover:text-accent-yellow">Website by Gate Developers</Link>
+            </div>
+          </div>
           <div className="flex items-center gap-2">
             {[
               { name: "Apple Pay", src: "/payments/apple-pay.svg" },
