@@ -63,7 +63,7 @@ export default function Header() {
             className="relative flex items-center gap-1.5 text-sm hover:text-accent-yellow transition-colors"
           >
             <Heart className="h-5 w-5" />
-            {mounted && wishlistCount > 0 && (
+            {mounted && (
               <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold">
                 {wishlistCount}
               </span>
@@ -76,7 +76,7 @@ export default function Header() {
           >
             <div className="relative">
             <ShoppingCart className="h-5 w-5" />
-              {mounted && cartCount > 0 && (
+              {mounted && (
                 <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold">
                   {cartCount}
                 </span>
