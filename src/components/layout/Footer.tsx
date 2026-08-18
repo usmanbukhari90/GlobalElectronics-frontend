@@ -7,16 +7,12 @@ export default function Footer() {
     <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
     <div>
-    <div className="relative z-10 h-16 w-full">
-              <Image
-                src="/images/logo.png"
-                alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
-                width={400}
-                height={218}
-                className="absolute -left-6 -top-14 h-44 w-auto"
-              />
-            </div>
-            <p className="mt-4 text-sm text-white/70 leading-relaxed">
+            <img
+              src="/images/logo.png"
+              alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
+              className="h-12 w-auto mb-4"
+            />
+            <p className="text-sm text-white/70 leading-relaxed">
               {SHOP_INFO.tagline}. Your trusted electronics partner in Dubai,
               UAE.
             </p>
