@@ -1,13 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SHOP_INFO } from "@/lib/constants";
-
 export default function Footer() {
   return (
     <footer className="bg-navy text-white mt-12">
     <div className="mx-auto max-w-[1400px] px-6 py-12 lg:px-10">
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <h3 className="text-lg font-bold mb-3">{SHOP_INFO.name}</h3>
+    <div>
+            <Image
+              src="/images/logo.png"
+              alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
+              width={400}
+              height={218}
+              className="h-10 w-auto mb-3"
+            />
             <p className="text-sm text-white/70 leading-relaxed">
               {SHOP_INFO.tagline}. Your trusted electronics partner in Dubai,
               UAE.

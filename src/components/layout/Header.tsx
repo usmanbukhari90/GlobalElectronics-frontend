@@ -1,8 +1,8 @@
 "use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { User, Heart, ShoppingCart, Tv, LayoutDashboard } from "lucide-react";
+import { User, Heart, ShoppingCart, LayoutDashboard } from "lucide-react";
 import { useCartStore, useWishlistStore } from "@/lib/store";
 import { formatAED, SHOP_INFO } from "@/lib/constants";
 import { isLoggedIn } from "@/lib/adminAuth";
@@ -30,16 +30,15 @@ export default function Header() {
       <header className="bg-navy text-white">
       <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 pt-3 pb-2 lg:gap-6 lg:px-6 lg:py-4">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 lg:h-12 lg:w-12">
-              <Tv className="h-6 w-6 text-white lg:h-7 lg:w-7" />
-            </div>
-            <div className="block">
-              <div className="text-sm font-bold tracking-wide lg:text-lg">{SHOP_INFO.name}</div>
-              <div className="text-[9px] tracking-wider text-white/70 uppercase lg:text-[10px]">
-                {SHOP_INFO.tagline}
-              </div>
-            </div>
+          <Link href="/" className="flex shrink-0 items-center">
+            <Image
+              src="/images/logo.png"
+              alt={`${SHOP_INFO.name} — ${SHOP_INFO.tagline}`}
+              width={400}
+              height={218}
+              priority
+              className="h-9 w-auto lg:h-12"
+            />
           </Link>
   
           {/* Search — desktop/tablet only, sits inline here. On mobile it moves
