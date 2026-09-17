@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   verification: {
-    google: "YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+    google: "nfd27y9AS3MeTeR01Mmm0w5NdyFrXjQ_Tlw3BVI6Nu4",
   },
 };
 export default function RootLayout({
