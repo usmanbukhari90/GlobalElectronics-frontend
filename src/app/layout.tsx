@@ -16,9 +16,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "GLOBAL Electronics | TVs, Laptops & More — Dubai, UAE",
   description:
-    "Premium electronics shop in Dubai. Smart TVs, laptops, accessories. TV repair professionals & used smart TVs.",
+    "Premium electronics shop in Dubai. Smart TVs, laptops, accessories. TV repair professionals & smart TV sales.",
+  robots: "index, follow",
+  openGraph: {
+    siteName: "GLOBAL Electronics",
+    title: "GLOBAL Electronics | TVs, Laptops & More — Dubai, UAE",
+    description:
+      "Premium electronics shop in Dubai. Smart TVs, laptops, accessories. TV repair professionals & smart TV sales.",
+    type: "website",
+  },
+  verification: {
+    google: "YOUR_GOOGLE_VERIFICATION_CODE_HERE",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
